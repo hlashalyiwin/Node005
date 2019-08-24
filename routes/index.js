@@ -42,6 +42,7 @@ router.post('/signin', function(req, res){
     }
   });
 });
+
 router.post('/duemail', function(req, res) {
   Admin.findOne({email:req.body.email}, function(err, rtn){
   if(err) throw err;

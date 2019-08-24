@@ -21,7 +21,6 @@ router.post('/postadd', function(req, res){
     res.redirect('/posts/postlist');
   });
 });
-
 router.get('/postlist', function(req,res) {
   Post.find({}).populate('author').exec(function (err, rtn){
     if(err) throw err;

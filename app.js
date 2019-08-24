@@ -8,6 +8,9 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var apiuser = require('./api/routes/users');
+var apipost = require('./api/routes/posts');
+var apiadmin = require('./api/routes/admin');
 var app = express();
 
 // view engine setup
@@ -23,10 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 app.use(session({
-          secret: 'hannykyawb@oi7icit!',
+          secret: 'hlashalyiwin@oi7icit!',
           resave: false,
           saveUninitialized: true
 }));
@@ -34,6 +35,11 @@ app.use(function(req, res, next){
   res.locals.user = req.session.user;
   next();
 });
+
+app.use('/api/user',apiuser);
+app.use('/api/post',apipost);
+app.use('/api',apiadmin);
+
 app.use('/', indexRouter);
 app.use(function(req,res,next){
   if(req.session.user){

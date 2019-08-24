@@ -19,7 +19,6 @@ var UserSchema = new Schema({
      required: true
    }
 });
-
 UserSchema.pre('save', function(next){
   this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8), null);
   next();

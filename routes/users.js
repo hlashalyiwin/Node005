@@ -5,6 +5,7 @@ var isemail = require('isemail');
 var multer = require('multer');
 var upload = multer({ dest: 'public/images/uploads'});
 var passwordValidator = require('password-validator');
+
 var schema = new passwordValidator();
 schema
 .is().min(8)
@@ -14,6 +15,7 @@ schema
 .has().digits()
 .has().not().spaces()
 .is().not().oneOf(['Passw0rd', 'Password123']);
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
